@@ -4,10 +4,12 @@ import 'package:forge_core/forge_core.dart';
 
 import '../profiles/profile_registry.dart';
 import '../views/profile_view.dart';
+import '../widgets/search_sheet.dart';
+import '../widgets/export_import_sheet.dart';
+import '../widgets/onboarding_sheet.dart';
 
 /// The Forge Shell — the "Regal" that hosts all profiles.
-/// Uses a drawer for navigation when there are more than 5 profiles,
-/// bottom nav when 5 or fewer.
+/// Uses a drawer for navigation (13+ profiles).
 class ForgeShell extends ConsumerStatefulWidget {
   const ForgeShell({super.key});
 
@@ -21,28 +23,13 @@ class _ForgeShellState extends ConsumerState<ForgeShell> {
   @override
   Widget build(BuildContext context) {
     final profiles = allProfiles;
-    final useDrawer = profiles.length > 5;
 
     return Scaffold(
-      drawer: useDrawer ? _buildDrawer(profiles) : null,
+      drawer: _buildDrawer(profiles),
       body: ProfileView(
         key: ValueKey(profiles[_currentIndex].id),
         profile: profiles[_currentIndex],
       ),
-      bottomNavigationBar: useDrawer
-          ? null
-          : NavigationBar(
-              selectedIndex: _currentIndex,
-              onDestinationSelected: (i) =>
-                  setState(() => _currentIndex = i),
-              destinations: [
-                for (final p in profiles)
-                  NavigationDestination(
-                    icon: Icon(_iconForProfile(p)),
-                    label: p.title,
-                  ),
-              ],
-            ),
     );
   }
 
@@ -55,20 +42,21 @@ class _ForgeShellState extends ConsumerState<ForgeShell> {
       },
       children: [
         const Padding(
-          padding: EdgeInsets.fromLTRB(28, 24, 16, 8),
+          padding: EdgeInsets.fromLTRB(28, 24, 16, 4),
           child: Text(
             'The Forge',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.fromLTRB(28, 0, 16, 16),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(28, 0, 16, 8),
           child: Text(
-            '80 Apps. 1 Engine.',
-            style: TextStyle(fontSize: 12, letterSpacing: 0.5),
+            '${profiles.length} Module · 1 Engine',
+            style: TextStyle(
+              fontSize: 12,
+              letterSpacing: 0.5,
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(128),
+            ),
           ),
         ),
         const Divider(indent: 28, endIndent: 28),
@@ -77,7 +65,67 @@ class _ForgeShellState extends ConsumerState<ForgeShell> {
             icon: Icon(_iconForProfile(p)),
             label: Text(p.title),
           ),
+        const Divider(indent: 28, endIndent: 28),
+        // Utility actions
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: ListTile(
+            leading: const Icon(Icons.search_rounded),
+            title: const Text('Suche'),
+            onTap: () {
+              Navigator.pop(context);
+              _showSearch();
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: ListTile(
+            leading: const Icon(Icons.import_export_rounded),
+            title: const Text('Export / Import'),
+            onTap: () {
+              Navigator.pop(context);
+              _showExportImport();
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: ListTile(
+            leading: const Icon(Icons.tune_rounded),
+            title: const Text('Module verwalten'),
+            onTap: () {
+              Navigator.pop(context);
+              _showOnboarding();
+            },
+          ),
+        ),
       ],
+    );
+  }
+
+  void _showSearch() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const SearchSheet(),
+    );
+  }
+
+  void _showExportImport() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => const ExportImportSheet(),
+    );
+  }
+
+  void _showOnboarding() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => const OnboardingSheet(),
     );
   }
 
@@ -97,6 +145,11 @@ class _ForgeShellState extends ConsumerState<ForgeShell> {
       'verified_user' => Icons.verified_user_rounded,
       'accessibility_new' => Icons.accessibility_new_rounded,
       'child_care' => Icons.child_care_rounded,
+      'directions_car' => Icons.directions_car_rounded,
+      'fitness_center' => Icons.fitness_center_rounded,
+      'payments' => Icons.payments_rounded,
+      'pets' => Icons.pets_rounded,
+      'cake' => Icons.cake_rounded,
       _ => Icons.apps_rounded,
     };
   }

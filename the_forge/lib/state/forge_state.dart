@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 import 'demo_seed.dart';
+import '../services/notification_service.dart';
 
 const _uuid = Uuid();
 
@@ -53,6 +54,8 @@ class ForgeStoreNotifier extends StateNotifier<List<Item>> {
     if (_file != null) {
       await _file!.writeAsString(_store.export());
     }
+    // Reschedule notifications after every change
+    NotificationService.instance.rescheduleAll(state);
   }
 
   // ── Public API (verbs) ──────────────────────────────────────────────────

@@ -5,6 +5,7 @@ import 'package:forge_core/forge_core.dart';
 import '../state/forge_state.dart';
 import '../widgets/forge_item_card.dart';
 import '../widgets/add_item_sheet.dart';
+import '../widgets/search_sheet.dart';
 import '../animations/scroll_reveal.dart';
 import 'board_view.dart';
 import 'grid_view.dart';
@@ -34,7 +35,14 @@ class ProfileView extends ConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.search_rounded),
-            onPressed: () {}, // M4: global search
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (_) => const SearchSheet(),
+              );
+            },
           ),
         ],
       ),

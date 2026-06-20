@@ -13,19 +13,29 @@ import 'warranty_tracker.dart';
 import 'cleaning_plan.dart';
 import 'senior_contacts.dart';
 import 'kids_routine.dart';
+import 'auto_service.dart';
+import 'fitness_tracker.dart';
+import 'subscription_cost.dart';
+import 'pet_care.dart';
+import 'birthday_reminder.dart';
 
 /// Central registry of all available profiles ("apps").
 /// Adding a new "app" = adding one import + one entry here.
 /// No new core code anywhere else. Ever.
 ///
-/// Current count: 13 profiles. Engine code unchanged since M0.
+/// Current count: 18 profiles. Engine code unchanged since M0.
 final List<Profile> allProfiles = [
   deadlineLedger,
   calendarOverview,
+  birthdayReminder,
   contractTracker,
   warrantyTracker,
+  subscriptionCost,
   plantCare,
+  petCare,
   cleaningPlan,
+  autoService,
+  fitnessTracker,
   medicationTracker,
   householdInventory,
   kitchenLoop,
