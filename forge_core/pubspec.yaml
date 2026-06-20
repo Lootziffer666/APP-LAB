@@ -1,0 +1,10 @@
+name: forge_core
+description: UI-free core engine for The Forge. M0 frozen contracts + proven status engine.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dev_dependencies:
+  test: ^1.25.0
