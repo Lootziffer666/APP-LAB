@@ -9,6 +9,7 @@ import '../animations/scroll_reveal.dart';
 import 'board_view.dart';
 import 'grid_view.dart';
 import 'big_button_view.dart';
+import 'calendar_view.dart';
 
 /// Renders a single profile's view.
 /// Dispatches to the correct view widget based on [Profile.view].
@@ -53,6 +54,7 @@ class ProfileView extends ConsumerWidget {
       ViewId.board => _BoardListView(items: items),
       ViewId.grid => InventoryGridView(items: items, profile: profile),
       ViewId.bigButton => BigButtonView(items: items, profile: profile),
+      ViewId.calendar => CalendarView(items: items, profile: profile),
       _ => _ListView(items: items, profile: profile),
     };
   }

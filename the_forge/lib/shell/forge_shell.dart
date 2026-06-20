@@ -85,12 +85,18 @@ class _ForgeShellState extends ConsumerState<ForgeShell> {
     final iconName = (profile.skin['icon'] as String?) ?? 'apps';
     return switch (iconName) {
       'calendar_today' => Icons.calendar_today_rounded,
+      'calendar_month' => Icons.calendar_month_rounded,
       'inventory_2' => Icons.inventory_2_rounded,
       'checklist' => Icons.checklist_rounded,
       'medication' => Icons.medication_rounded,
       'kitchen' => Icons.kitchen_rounded,
       'eco' => Icons.eco_rounded,
       'description' => Icons.description_rounded,
+      'cleaning_services' => Icons.cleaning_services_rounded,
+      'receipt_long' => Icons.receipt_long_rounded,
+      'verified_user' => Icons.verified_user_rounded,
+      'accessibility_new' => Icons.accessibility_new_rounded,
+      'child_care' => Icons.child_care_rounded,
       _ => Icons.apps_rounded,
     };
   }
