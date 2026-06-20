@@ -150,6 +150,13 @@ class _ForgeShellState extends ConsumerState<ForgeShell> {
       'payments' => Icons.payments_rounded,
       'pets' => Icons.pets_rounded,
       'cake' => Icons.cake_rounded,
+      'water_drop' => Icons.water_drop_rounded,
+      'visibility_off' => Icons.visibility_off_rounded,
+      'lock_reset' => Icons.lock_reset_rounded,
+      'bedtime' => Icons.bedtime_rounded,
+      'savings' => Icons.savings_rounded,
+      'handshake' => Icons.handshake_rounded,
+      'favorite' => Icons.favorite_rounded,
       _ => Icons.apps_rounded,
     };
   }

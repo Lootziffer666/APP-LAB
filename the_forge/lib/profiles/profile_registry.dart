@@ -18,30 +18,55 @@ import 'fitness_tracker.dart';
 import 'subscription_cost.dart';
 import 'pet_care.dart';
 import 'birthday_reminder.dart';
+import 'water_intake.dart';
+import 'screen_time.dart';
+import 'password_rotation.dart';
+import 'sleep_tracker.dart';
+import 'savings_goal.dart';
+import 'tool_lending.dart';
+import 'gratitude_log.dart';
 
 /// Central registry of all available profiles ("apps").
-/// Adding a new "app" = adding one import + one entry here.
-/// No new core code anywhere else. Ever.
 ///
-/// Current count: 18 profiles. Engine code unchanged since M0.
+/// Current count: **25 profiles**. Engine code unchanged since M0.
+/// Each profile is ~20 lines. The full registry is this file.
+/// Adding a new "app" = one import + one entry. Nothing else.
 final List<Profile> allProfiles = [
+  // ── TIME / DEADLINES ──
   deadlineLedger,
   calendarOverview,
   birthdayReminder,
   contractTracker,
   warrantyTracker,
   subscriptionCost,
+  autoService,
+  toolLending,
+
+  // ── INTERVALS / HABITS ──
   plantCare,
   petCare,
   cleaningPlan,
-  autoService,
   fitnessTracker,
+  waterIntake,
+  screenTime,
+  sleepTracker,
+  passwordRotation,
+  gratitudeLog,
+
+  // ── STOCK / INVENTORY ──
   medicationTracker,
   householdInventory,
   kitchenLoop,
+  savingsGoal,
+
+  // ── ROUTINES / PROGRESS ──
   routineEngine,
   kidsRoutine,
+
+  // ── DOCUMENTS / RETENTION ──
   documentBrain,
+
+  // ── ACCESSIBILITY ──
   seniorContacts,
 ];
 
